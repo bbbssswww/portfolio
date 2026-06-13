@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自动化解决方案 | 自由开发者</title>
+<meta name="description" content="专业自动化开发服务 - 数据采集、流程自动化、API集成、数据处理">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:72px}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans SC",sans-serif;color:#1e293b;background:#f8fafc;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+:root{--primary:#2563eb;--primary-dark:#1d4ed8;--primary-light:#dbeafe;--accent:#0891b2;--dark:#0f172a;--dark-2:#1e293b;--gray-50:#f8fafc;--gray-100:#f1f5f9;--gray-200:#e2e8f0;--gray-300:#cbd5e1;--gray-400:#94a3b8;--gray-500:#64748b;--gray-600:#475569;--gray-700:#334155;--radius:12px;--max-w:1100px;--shadow-sm:0 1px 2px rgba(0,0,0,.05);--shadow-md:0 4px 6px -1px rgba(0,0,0,.07),0 2px 4px -2px rgba(0,0,0,.05);--shadow-lg:0 10px 15px -3px rgba(0,0,0,.08),0 4px 6px -4px rgba(0,0,0,.04);--transition:.25s ease}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.section{padding:96px 0}
+.section-title{font-size:2rem;font-weight:700;text-align:center;margin-bottom:16px}
+.section-sub{text-align:center;color:var(--gray-500);font-size:1.1rem;margin-bottom:56px;max-width:600px;margin-left:auto;margin-right:auto}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 28px;border-radius:8px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:all var(--transition)}
+.btn-primary{background:var(--primary);color:#fff}
+.btn-primary:hover{background:var(--primary-dark);transform:translateY(-1px);box-shadow:0 4px 12px rgba(37,99,235,.35)}
+.btn-outline{background:transparent;color:var(--primary);border:2px solid var(--primary)}
+.btn-outline:hover{background:var(--primary-light)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(15,23,42,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav-logo{font-weight:700;font-size:1.2rem;color:#fff;display:flex;align-items:center;gap:8px}
+.nav-logo svg{width:24px;height:24px}
+.nav-links{display:flex;gap:32px}
+.nav-links a{color:var(--gray-300);font-size:.9rem;font-weight:500;transition:color var(--transition);position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--primary);transition:width var(--transition)}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after{width:100%}
+.nav-toggle{display:none;background:none;border:none;color:#fff;cursor:pointer;padding:4px}
+.nav-toggle svg{width:24px;height:24px}
+.hero{background:linear-gradient(135deg,#0f172a 0%,#1e293b 60%,#0f172a 100%);min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;background:radial-gradient(circle,rgba(37,99,235,.12) 0%,transparent 70%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;background:radial-gradient(circle,rgba(8,145,178,.08) 0%,transparent 70%);pointer-events:none}
+.hero-content{position:relative;z-index:1;text-align:left;animation:fadeUp .8s ease}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(37,99,235,.15);color:var(--primary);padding:6px 14px;border-radius:20px;font-size:.8rem;font-weight:600;margin-bottom:24px;border:1px solid rgba(37,99,235,.2)}
+.hero h1{font-size:3.2rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:20px}
+.hero h1 span{background:linear-gradient(135deg,#60a5fa,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:1.15rem;color:var(--gray-400);max-width:560px;margin-bottom:36px;line-height:1.7}
+.hero-tags{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:36px}
+.hero-tags span{background:rgba(255,255,255,.06);color:var(--gray-300);padding:6px 14px;border-radius:6px;font-size:.85rem;font-weight:500;border:1px solid rgba(255,255,255,.06)}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:var(--gray-500);font-size:.75rem;display:flex;flex-direction:column;align-items:center;gap:6px;animation:bounce 2s infinite}
+@keyframes bounce{0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}40%{transform:translateX(-50%) translateY(-8px)}60%{transform:translateX(-50%) translateY(-4px)}}
+.hero-scroll svg{width:20px;height:20px}
+.services{background:#fff}
+.services-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.service-card{background:var(--gray-50);border:1px solid var(--gray-200);border-radius:var(--radius);padding:32px;transition:all var(--transition);cursor:default;position:relative;overflow:hidden}
+.service-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--primary);opacity:0;transition:opacity var(--transition)}
+.service-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.service-card:hover::before{opacity:1}
+.service-icon{width:48px;height:48px;background:var(--primary-light);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;color:var(--primary)}
+.service-icon svg{width:24px;height:24px}
+.service-card h3{font-size:1.15rem;font-weight:700;margin-bottom:10px}
+.service-card p{color:var(--gray-600);font-size:.9rem;line-height:1.65}
+.service-card .tag{display:inline-block;margin-top:16px;font-size:.8rem;color:var(--primary);font-weight:600;background:var(--primary-light);padding:4px 12px;border-radius:4px}
+.process{background:var(--gray-50)}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;position:relative}
+.process-steps::before{content:'';position:absolute;top:36px;left:calc(12.5% + 12px);right:calc(12.5% + 12px);height:2px;background:var(--gray-200);z-index:0}
+.step{text-align:center;position:relative;z-index:1}
+.step-num{width:72px;height:72px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1.5rem;font-weight:800;margin:0 auto 20px;position:relative;box-shadow:0 4px 14px rgba(37,99,235,.25)}
+.step h4{font-size:1rem;font-weight:700;margin-bottom:8px}
+.step p{font-size:.85rem;color:var(--gray-500);line-height:1.55}
+.projects{background:#fff}
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.project-card{border:1px solid var(--gray-200);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);background:#fff}
+.project-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--primary-light)}
+.project-img{height:180px;background:linear-gradient(135deg,var(--gray-100),var(--gray-200));display:flex;align-items:center;justify-content:center;color:var(--gray-400);font-size:.85rem;position:relative;overflow:hidden}
+.project-img svg{width:48px;height:48px;opacity:.3}
+.project-body{padding:24px}
+.project-body h4{font-size:1rem;font-weight:700;margin-bottom:8px}
+.project-body p{color:var(--gray-600);font-size:.85rem;line-height:1.6;margin-bottom:14px}
+.project-stack{display:flex;flex-wrap:wrap;gap:6px}
+.project-stack span{font-size:.75rem;background:var(--gray-100);color:var(--gray-600);padding:3px 10px;border-radius:4px;font-weight:500}
+.about{background:var(--gray-50)}
+.about-inner{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.about-text h3{font-size:1.3rem;font-weight:700;margin-bottom:16px}
+.about-text p{color:var(--gray-600);font-size:.95rem;line-height:1.7;margin-bottom:16px}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:24px}
+.stat{text-align:center;padding:16px;background:#fff;border-radius:10px;border:1px solid var(--gray-200)}
+.stat-num{font-size:1.6rem;font-weight:800;color:var(--primary)}
+.stat-label{font-size:.8rem;color:var(--gray-500);margin-top:4px}
+.skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.skill-item{background:#fff;border:1px solid var(--gray-200);border-radius:8px;padding:10px 14px;font-size:.88rem;font-weight:500;display:flex;align-items:center;gap:8px;transition:all var(--transition)}
+.skill-item:hover{border-color:var(--primary);background:var(--primary-light);color:var(--primary)}
+.skill-item svg{width:16px;height:16px;color:var(--primary);flex-shrink:0}
+.contact{background:var(--dark);color:#fff}
+.contact .section-sub{color:var(--gray-400)}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact-info h3{font-size:1.3rem;font-weight:700;margin-bottom:16px}
+.contact-info p{color:var(--gray-400);font-size:.95rem;line-height:1.7;margin-bottom:24px}
+.contact-item{display:flex;align-items:center;gap:12px;margin-bottom:14px;color:var(--gray-300)}
+.contact-item svg{width:20px;height:20px;color:var(--primary);flex-shrink:0}
+.contact-item span{font-size:.92rem}
+.contact-form{display:flex;flex-direction:column;gap:14px}
+.contact-form input,.contact-form textarea{padding:12px 16px;border-radius:8px;border:1px solid var(--gray-700);background:var(--dark-2);color:#fff;font-size:.95rem;font-family:inherit;transition:border-color var(--transition);outline:none}
+.contact-form input:focus,.contact-form textarea:focus{border-color:var(--primary)}
+.contact-form input::placeholder,.contact-form textarea::placeholder{color:var(--gray-500)}
+.contact-form textarea{min-height:120px;resize:vertical}
+.footer{background:#0a0f1a;color:var(--gray-500);padding:32px 0;text-align:center;font-size:.85rem;border-top:1px solid rgba(255,255,255,.04)}
+.footer-inner{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-links{display:flex;gap:20px}
+.footer-links a{color:var(--gray-400);transition:color var(--transition)}
+.footer-links a:hover{color:var(--primary)}
+@media(max-width:900px){
+.services-grid{grid-template-columns:1fr}
+.process-steps{grid-template-columns:repeat(2,1fr)}
+.process-steps::before{display:none}
+.projects-grid{grid-template-columns:1fr}
+.about-inner{grid-template-columns:1fr;gap:40px}
+.contact-grid{grid-template-columns:1fr;gap:40px}
+.hero h1{font-size:2.4rem}
+}
+@media(max-width:640px){
+.section{padding:64px 0}
+.nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--dark);flex-direction:column;padding:16px 24px;gap:4px;border-bottom:1px solid rgba(255,255,255,.08)}
+.nav-links.open{display:flex}
+.nav-links a{padding:12px 0;font-size:1rem}
+.nav-toggle{display:block}
+.hero h1{font-size:1.8rem}
+.hero p{font-size:1rem}
+.hero-actions{flex-direction:column}
+.hero-actions .btn{width:100%;justify-content:center}
+.hero-tags{justify-content:center}
+.hero-content{text-align:center}
+.hero p{margin-left:auto;margin-right:auto}
+.process-steps{grid-template-columns:1fr}
+.about-stats{grid-template-columns:repeat(3,1fr)}
+.skills-grid{grid-template-columns:1fr}
+.section-title{font-size:1.6rem}
+.about-inner{text-align:center}
+.about-text p{text-align:left}
+.footer-inner{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+<nav class="nav">
+<div class="container nav-inner">
+<a href="#" class="nav-logo">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+AutoDev
+</a>
+<ul class="nav-links" id="navLinks">
+<li><a href="#services">服务</a></li>
+<li><a href="#process">流程</a></li>
+<li><a href="#projects">案例</a></li>
+<li><a href="#about">关于</a></li>
+<li><a href="#contact">联系</a></li>
+</ul>
+<button class="nav-toggle" id="navToggle" aria-label="菜单">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+</div>
+</nav>
+<section class="hero">
+<div class="container hero-content">
+<div class="hero-badge">
+<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+可接长期 / 短期项目
+</div>
+<h1>让你的重复工作<br><span>自动完成</span></h1>
+<p>我是自动化开发自由职业者，专注用代码消灭重复劳动——数据采集、流程自动化、API 集成、批量处理，帮你把时间省下来做更有价值的事。</p>
+<div class="hero-tags">
+<span>Python</span>
+<span>自动化脚本</span>
+<span>数据采集</span>
+<span>API 开发</span>
+<span>办公自动化</span>
+</div>
+<div class="hero-actions">
+<a href="#contact" class="btn btn-primary">
+预约免费评估
+<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+</a>
+<a href="#projects" class="btn btn-outline">查看案例</a>
+</div>
+</div>
+<div class="hero-scroll">
+<span>向下滚动</span>
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+</div>
+</section>
+<section class="section services" id="services">
+<div class="container">
+<h2 class="section-title">我能为你做什么</h2>
+<p class="section-sub">无论是零散的小需求还是长期项目，我都能用代码帮你高效解决</p>
+<div class="services-grid">
+<div class="service-card">
+<div class="service-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg>
+</div>
+<h3>网络数据采集</h3>
+<p>从网站、API 或文档中自动化获取结构化数据，支持反爬策略、代理轮换、增量更新，输出 CSV / Excel / JSON / 数据库。</p>
+<span class="tag">Python · Scrapy · Playwright</span>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+</div>
+<h3>数据处理与清洗</h3>
+<p>Excel / CSV 数据清洗、格式转换、跨数据源合并、报表自动生成。告别手动复制粘贴，让数据自己整理好。</p>
+<span class="tag">Pandas · Excel · SQL</span>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+</div>
+<h3>流程自动化</h3>
+<p>邮件自动发送、文件批量处理、定时任务编排、OA 流程自动化。把每天重复的操作交给脚本，你做更重要的事。</p>
+<span class="tag">Cron · Selenium · Win自动化</span>
+</div>
+<div class="service-card">
+<div class="service-icon">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14.899A7 7 0 119.9 9h3.25"/><path d="M15.24 6l3.18 3.18-2.12 2.12 2.83 2.83"/><path d="M14 14l-2 2"/></svg>
+</div>
+<h3>API 集成与开发</h3>
+<p>对接第三方服务、搭建数据管道、开发自定义 RESTful API，让不同系统之间数据自动流转。</p>
+<span class="tag">FastAPI · Node.js · 第三方API</span>
+</div>
+</div>
+</div>
+</section>
+<section class="section process" id="process">
+<div class="container">
+<h2 class="section-title">合作流程</h2>
+<p class="section-sub">简单透明，从沟通到交付，每一步你都能看到进展</p>
+<div class="process-steps">
+<div class="step">
+<div class="step-num">1</div>
+<h4>沟通需求</h4>
+<p>告诉我你想要实现什么，现状是什么，我会帮你评估可行性和方案</p>
+</div>
+<div class="step">
+<div class="step-num">2</div>
+<h4>方案报价</h4>
+<p>给出详细的技术方案、交付物清单和固定报价，无隐藏费用</p>
+</div>
+<div class="step">
+<div class="step-num">3</div>
+<h4>开发交付</h4>
+<p>按节点交付可运行的成果，随时沟通进展，直到你满意为止</p>
+</div>
+<div class="step">
+<div class="step-num">4</div>
+<h4>售后保障</h4>
+<p>交付后提供一段时间免费维护，确保系统稳定运行</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section projects" id="projects">
+<div class="container">
+<h2 class="section-title">近期项目</h2>
+<p class="section-sub">以下是一些做过的案例，帮你了解我能做什么样的事</p>
+<div class="projects-grid">
+<div class="project-card">
+<div class="project-img">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
+</div>
+<div class="project-body">
+<h4>电商竞品监控系统</h4>
+<p>定时采集多个电商平台的价格与库存数据，自动生成价格变动报表，降价时即时推送通知。</p>
+<div class="project-stack">
+<span>Scrapy</span>
+<span>Playwright</span>
+<span>Pandas</span>
+<span>Telegram Bot</span>
+</div>
+</div>
+</div>
+<div class="project-card">
+<div class="project-img">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+</div>
+<div class="project-body">
+<h4>报表自动化流水线</h4>
+<p>从多个数据源提取 → 清洗 → 合并 → 生成 Excel 报表 → 邮件自动分发，全流程无人值守。</p>
+<div class="project-stack">
+<span>Python</span>
+<span>OpenPyXL</span>
+<span>SMTP</span>
+<span>Task Scheduler</span>
+</div>
+</div>
+</div>
+<div class="project-card">
+<div class="project-img">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+</div>
+<div class="project-body">
+<h4>企业内部工具集成</h4>
+<p>对接企业微信与内部系统，实现审批自动流转、消息模板推送、数据看板定时更新。</p>
+<div class="project-stack">
+<span>FastAPI</span>
+<span>企业微信API</span>
+<span>SQLite</span>
+<span>Docker</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section about" id="about">
+<div class="container about-inner">
+<div class="about-text">
+<h3>关于我</h3>
+<p>从大学开始写 Python，到现在一直在用代码解决实际问题。做过数据采集、办公自动化、API 集成这些方向的活儿，最擅长把一个繁琐的手工流程变成一键执行的脚本。</p>
+<p>我比较看重的两件事：一是<strong>沟通要清楚</strong>，需求和交付物对齐了再开工；二是<strong>代码要可靠</strong>，该处理的异常处理了，该留的日志留下了，不会出现跑着跑着人没了的情况。</p>
+<p>不管你是需要一个一次性脚本，还是一个长期运转的数据管道，都欢迎来聊。</p>
+<div class="about-stats">
+<div class="stat">
+<div class="stat-num" id="statProjects">0</div>
+<div class="stat-label">完成项目</div>
+</div>
+<div class="stat">
+<div class="stat-num" id="statClients">0</div>
+<div class="stat-label">服务客户</div>
+</div>
+<div class="stat">
+<div class="stat-num" id="statRate">0%</div>
+<div class="stat-label">好评率</div>
+</div>
+</div>
+</div>
+<div>
+<h3 style="font-size:1.3rem;font-weight:700;margin-bottom:16px">技术栈</h3>
+<div class="skills-grid">
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Python</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg> Scrapy / Playwright</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> FastAPI / Flask</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> JavaScript / Node.js</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg> SQL / 数据库</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg> Selenium / 自动化</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg> Web Scraping</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg> Docker / 部署</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 14.899A7 7 0 119.9 9h3.25"/><path d="M15.24 6l3.18 3.18-2.12 2.12 2.83 2.83"/><path d="M14 14l-2 2"/></svg> Git / CI</div>
+<div class="skill-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg> 办公自动化</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section contact" id="contact">
+<div class="container">
+<h2 class="section-title" style="color:#fff">联系我</h2>
+<p class="section-sub">有项目想做？想了解我能做什么？随时聊</p>
+<div class="contact-grid">
+<div class="contact-info">
+<h3>联系方式</h3>
+<p>最好直接说明你的需求或现状，我会尽快回复，给一个初步方案和报价参考。</p>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+<span>33965842bsw@gmail.com</span>
+</div>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+<span>远程 / 中国</span>
+</div>
+<div class="contact-item">
+<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+<span>github.com/bbbssswww</span>
+</div>
+</div>
+<form class="contact-form" id="contactForm">
+<input type="text" placeholder="你的名字" required>
+<input type="email" placeholder="邮箱 / 微信" required>
+<textarea placeholder="简单描述你的需求… 比如：我需要定时抓取某网站的数据，每周生成一份报表。" required></textarea>
+<button type="submit" class="btn btn-primary" style="align-self:flex-start">发送咨询</button>
+<p style="font-size:.78rem;color:var(--gray-500);margin-top:4px">提交后我会在 24 小时内回复</p>
+</form>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="container footer-inner">
+<span>&copy; 2026 AutoDev. All rights reserved.</span>
+<div class="footer-links">
+<a href="#services">服务</a>
+<a href="#projects">案例</a>
+<a href="#contact">联系</a>
+</div>
+</div>
+</footer>
+<script>
+document.getElementById('navToggle').addEventListener('click',function(){document.getElementById('navLinks').classList.toggle('open')});
+document.querySelectorAll('.nav-links a').forEach(function(a){a.addEventListener('click',function(){document.getElementById('navLinks').classList.remove('open')})});
+function animateCount(el,target,suffix){
+var current=0;var step=Math.max(1,Math.floor(target/40));
+var interval=setInterval(function(){current+=step;if(current>=target){current=target;clearInterval(interval)}el.textContent=current+suffix},30)}
+var observer=new IntersectionObserver(function(entries){entries.forEach(function(entry){if(entry.isIntersecting){animateCount(document.getElementById('statProjects'),28);animateCount(document.getElementById('statClients'),15);animateCount(document.getElementById('statRate'),100,'%');observer.disconnect()}})},{threshold:0.5});
+observer.observe(document.querySelector('.about-stats'));
+document.getElementById('contactForm').addEventListener('submit',function(e){e.preventDefault();alert('表单已收到！（此演示页面未连接后端，请将表单接入实际邮件或消息服务）')});
+</script>
+</body>
+</html>
